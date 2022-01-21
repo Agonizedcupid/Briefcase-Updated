@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Briefcase</string>
+
+    <string-array name="remind_spinner">
+        <item>Everyday</item>
+        <item>Date-Picker</item>
+    </string-array>
+</resources>
