@@ -3,6 +3,7 @@ package com.aariyan.briefcase.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +16,19 @@ import com.aariyan.briefcase.Model.SurveyModel;
 import com.aariyan.briefcase.Network.APIs;
 import com.aariyan.briefcase.Network.ApiClient;
 import com.aariyan.briefcase.R;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -28,10 +39,15 @@ public class SalesActivity extends AppCompatActivity {
 
     public String name = "";
 
-    private TextView userName,howMuchIMade,toGo,target,gp,toGoText,weeksLeft,weeksLeftAmount;
-    private TextView daysLeft,daysLeftAmount;
+    private TextView userName, howMuchIMade, toGo, target, gp, toGoText, weeksLeft, weeksLeftAmount;
+    private TextView daysLeft, daysLeftAmount;
 
     private ProgressBar progressBar;
+
+    private PieChart pieChart;
+
+    PieData pieData;
+    List<PieEntry> pieEntryList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +82,19 @@ public class SalesActivity extends AppCompatActivity {
         daysLeft = findViewById(R.id.daysLeft);
         daysLeftAmount = findViewById(R.id.daysLeftAmount);
 
+        pieChart = findViewById(R.id.pieChart);
+        pieChart.setUsePercentValues(false);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setCenterText("Sales");
+
+        Legend l = pieChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setEnabled(true);
+        l.setDrawInside(true);
+
         progressBar = findViewById(R.id.progressbar);
     }
 
@@ -95,11 +124,32 @@ public class SalesActivity extends AppCompatActivity {
                         target.setText(mnyTarget);
                         toGo.setText(mnyTogo);
                         gp.setText(mnyGP);
-                        toGoText.setText("TO Go: "+mnyTogo);
-                        weeksLeft.setText(""+intweeksleft);
+                        toGoText.setText("TO Go: " + mnyTogo);
+                        weeksLeft.setText("" + intweeksleft);
                         weeksLeftAmount.setText(mnyToAchieveintheremainingweeks);
-                        daysLeft.setText(""+intDaysLeft);
+                        daysLeft.setText("" + intDaysLeft);
                         daysLeftAmount.setText(mnyToAchieveintheremainingdays);
+
+                        int tg = (int) Double.parseDouble(mnyTogo);
+                        int t = (int) Double.parseDouble(mnyTarget);
+
+                        pieEntryList.add(new PieEntry(tg, "To Go"));
+                        pieEntryList.add(new PieEntry(t, "Target"));
+
+                        ArrayList<Integer> colors = new ArrayList<>();
+                        for (int color : ColorTemplate.MATERIAL_COLORS) {
+                            colors.add(color);
+                        }
+
+                        PieDataSet pieDataSet = new PieDataSet(pieEntryList, "Sales");
+                        pieDataSet.setColors(colors);
+                        pieData = new PieData(pieDataSet);
+                        pieData.setDrawValues(true);
+                        pieData.setValueTextColor(Color.BLACK);
+                        pieData.setValueTextSize(12);
+                        //pieData.setValueFormatter( new DefaultAxisValueFormatter(10));
+                        pieChart.setData(pieData);
+                        pieChart.invalidate();
                     }
                     progressBar.setVisibility(View.GONE);
 
