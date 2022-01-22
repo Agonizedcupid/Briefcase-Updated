@@ -70,4 +70,7 @@ public interface APIs {
     @GET("GetSalesSummaryTargetPerRep.php?")
     Call<ResponseBody> getSalesTarget(@Query("RepCode") String name);
 
+    @GET("GetCustomerDecreasingSales.php?")
+    Call<ResponseBody> getCustomerDecreasingSales(@Query("userid") String name);
+
 }

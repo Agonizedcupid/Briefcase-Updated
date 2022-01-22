@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aariyan.briefcase">
+    package="com.aariyan.briefcase" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -13,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Briefcase"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".Activity.ReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ButtonActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.SalesActivity"
             android:exported="false" />
@@ -46,7 +52,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.CustomerName"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

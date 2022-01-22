@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.aariyan.briefcase.Activity.ButtonActivity;
 import com.aariyan.briefcase.Activity.CollaborationActivity;
 import com.aariyan.briefcase.Activity.CustomerNameActivity;
 import com.aariyan.briefcase.Activity.StockSheetActivity;
@@ -25,7 +26,7 @@ public class LandingActivity extends AppCompatActivity {
     private CardView visitMemos;
     private CardView collaborating;
     private CardView cPanel;
-    private CardView createCustomers;
+    private CardView createReport;
 
     private View bottomSheet;
     private BottomSheetBehavior behavior;
@@ -61,7 +62,7 @@ public class LandingActivity extends AppCompatActivity {
         visitMemos = findViewById(R.id.visitMemos);
         collaborating = findViewById(R.id.collaborating);
         cPanel = findViewById(R.id.cPanel);
-        createCustomers = findViewById(R.id.createCustomers);
+        createReport = findViewById(R.id.createReport);
 
         closeBottomSheet = findViewById(R.id.closeBottomSheet);
         closeBottomSheet.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +71,13 @@ public class LandingActivity extends AppCompatActivity {
                 behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 orderHistoryLayout.setVisibility(View.GONE);
                 salesLayout.setVisibility(View.GONE);
+            }
+        });
+
+        createReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LandingActivity.this, ButtonActivity.class));
             }
         });
 
