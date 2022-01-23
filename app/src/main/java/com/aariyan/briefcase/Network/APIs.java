@@ -71,6 +71,9 @@ public interface APIs {
     Call<ResponseBody> getSalesTarget(@Query("RepCode") String name);
 
     @GET("GetCustomerDecreasingSales.php?")
-    Call<ResponseBody> getCustomerDecreasingSales(@Query("userid") String name);
+    Call<ResponseBody> getCustomerDecreasingSales(@Query("userid") String userId);
+
+    @GET("GetCustomerProblematicItems.php?")
+    Call<ResponseBody> getProblematicItem(@Query("userid") String userId, @Query("customercode") String customerCode);
 
 }

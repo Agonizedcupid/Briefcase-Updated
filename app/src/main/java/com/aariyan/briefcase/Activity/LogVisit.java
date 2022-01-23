@@ -271,7 +271,7 @@ public class LogVisit extends AppCompatActivity {
             }
         });
 
-        fifthOption.setOnClickListener(new View.OnClickListener() {
+        sixthOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fifthOption.setChecked(false);
