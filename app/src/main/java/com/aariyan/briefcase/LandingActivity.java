@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.aariyan.briefcase.Activity.ButtonActivity;
 import com.aariyan.briefcase.Activity.CollaborationActivity;
 import com.aariyan.briefcase.Activity.CustomerNameActivity;
+import com.aariyan.briefcase.Activity.DailySchedule;
 import com.aariyan.briefcase.Activity.StockSheetActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -27,6 +28,7 @@ public class LandingActivity extends AppCompatActivity {
     private CardView collaborating;
     private CardView cPanel;
     private CardView createReport;
+    private CardView dailySchedule;
 
     private View bottomSheet;
     private BottomSheetBehavior behavior;
@@ -55,6 +57,8 @@ public class LandingActivity extends AppCompatActivity {
 
         orderHistoryLayout = findViewById(R.id.orderHistoryLayout);
         salesLayout = findViewById(R.id.salesLayout);
+
+        dailySchedule = findViewById(R.id.dailySchedule);
 
         orderAndLoadedDeals = findViewById(R.id.ordersLoadedDeals);
         salesTargets = findViewById(R.id.salesTargets);
@@ -157,6 +161,13 @@ public class LandingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(LandingActivity.this, CollaborationActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+
+        dailySchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LandingActivity.this, DailySchedule.class));
             }
         });
     }

@@ -364,7 +364,48 @@
 
 
                     </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/dailySchedule"
+                        android:layout_width="0dp"
+                        android:layout_height="165dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="7dp"
+                        app:cardUseCompatPadding="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:background="@drawable/clicked_view"
+                            >
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/daily_schedule"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/amaranth_bold"
+                                android:gravity="center"
+                                android:paddingStart="25dp"
+                                android:paddingEnd="25dp"
+                                android:paddingTop="10dp"
+                                android:text="Daily Schedule"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 

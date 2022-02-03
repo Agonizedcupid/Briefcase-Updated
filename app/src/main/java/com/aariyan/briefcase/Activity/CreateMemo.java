@@ -46,6 +46,8 @@ public class CreateMemo extends AppCompatActivity {
     private EditText notes;
     private Button saveBtn;
 
+    private Button datePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,7 @@ public class CreateMemo extends AppCompatActivity {
 
     private void initUI() {
 
+        datePicker = findViewById(R.id.datePicker);
         customerCode = findViewById(R.id.cCodes);
         customerCode.setText(code);
         customerName = findViewById(R.id.cNames);
@@ -138,6 +141,13 @@ public class CreateMemo extends AppCompatActivity {
                         Toast.makeText(CreateMemo.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker();
             }
         });
     }

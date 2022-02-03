@@ -22,5 +22,12 @@ public class ButtonActivity extends AppCompatActivity {
                 startActivity(new Intent(ButtonActivity.this,ReportActivity.class));
             }
         });
+
+        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 }

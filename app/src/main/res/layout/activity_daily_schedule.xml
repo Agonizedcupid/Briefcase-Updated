@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity.ProblematicItemActivity">
+    tools:context=".Activity.DailySchedule">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarLayout"
@@ -31,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Problematic Item"
+                android:text="My Schedule"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
@@ -39,21 +38,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:padding="15dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_margin="15dp"
         android:layout_below="@id/appbarLayout"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/storeNames"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Store Name"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,36 +50,71 @@
             android:orientation="horizontal"
             >
 
-            <TextView
-                android:id="@+id/storeCodes"
+            <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Store Code"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                />
+                android:orientation="vertical"
+                >
 
-            <Button
-                android:id="@+id/logVisits"
-                android:text="Log Visit"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date From"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:textSize="16sp"
+                    />
+
+                <Button
+                    android:id="@+id/dateFroms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date To"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:textSize="16sp"
+                    />
+
+                <Button
+                    android:id="@+id/dateTos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dailyScheduleRecyclerview"
                 />
 
         </LinearLayout>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            tools:listitem="@layout/single_problematic_layout"
-            />
     </LinearLayout>
 
     <ProgressBar
@@ -99,7 +123,5 @@
         android:layout_centerInParent="true"
         android:id="@+id/progressbar"
         />
-
-
 
 </RelativeLayout>

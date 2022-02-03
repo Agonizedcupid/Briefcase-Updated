@@ -76,4 +76,8 @@ public interface APIs {
     @GET("GetCustomerProblematicItems.php?")
     Call<ResponseBody> getProblematicItem(@Query("userid") String userId, @Query("customercode") String customerCode);
 
+
+    @GET("GetNextVisits.php?")
+    Call<ResponseBody> getDailySchedule(@Query("userid") String userId, @Query("from") String from,@Query("to") String to);
+
 }

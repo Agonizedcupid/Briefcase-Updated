@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Briefcase"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.DailySchedule"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ProblematicItemActivity"
             android:exported="false" />
         <activity

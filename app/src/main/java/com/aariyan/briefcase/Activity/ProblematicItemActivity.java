@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -63,6 +64,17 @@ public class ProblematicItemActivity extends AppCompatActivity {
         storeCode = findViewById(R.id.storeCodes);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        findViewById(R.id.logVisits).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProblematicItemActivity.this,LogVisit.class)
+                        .putExtra("name",storeName.getText().toString())
+                        .putExtra("code",storeCode.getText().toString())
+                );
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
     }
 
     private void loadData(String name) {

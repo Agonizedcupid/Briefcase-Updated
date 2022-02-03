@@ -76,6 +76,13 @@ public class OrderActivity extends AppCompatActivity implements OrderAdapter.onC
 
     private void initUI() {
 
+        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         progressBar = findViewById(R.id.progressbar);
 
         orderRecyclerView = findViewById(R.id.orderRecyclerView);

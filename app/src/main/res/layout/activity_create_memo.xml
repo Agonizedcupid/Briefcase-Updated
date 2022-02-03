@@ -71,7 +71,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:padding="7dp"
-                    android:textColor="@color/purple_200"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     />
@@ -84,7 +84,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:padding="7dp"
-                    android:textColor="@color/purple_200"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     />
@@ -118,9 +118,17 @@
             />
 
         <Spinner
+            android:visibility="gone"
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Picker"
+            android:id="@+id/datePicker"
             />
 
         <Button
