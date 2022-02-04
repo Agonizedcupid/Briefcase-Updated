@@ -109,21 +109,29 @@ public class LogVisit extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONArray array = new JSONArray(response.body().string());
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject singleObject = array.getJSONObject(i);
-                        String intAuto = singleObject.getString("intAuto");
-                        String strMessage = singleObject.getString("strMessage");
-                        String dteActiveFrom = singleObject.getString("dteActiveFrom");
-                        String dteActiveTo = singleObject.getString("dteActiveTo");
-                        JSONObject ob = singleObject.getJSONObject("dtmCreate");
-                        String date = ob.getString("date");
-                        SurveyModel model = new SurveyModel(intAuto, strMessage, dteActiveFrom, dteActiveTo, date);
-                        surveyModels.add(model);
+                    if (array.length() > 0) {
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject singleObject = array.getJSONObject(i);
+                            String intAuto = singleObject.getString("intAuto");
+                            String strMessage = singleObject.getString("strMessage");
+                            String dteActiveFrom = singleObject.getString("dteActiveFrom");
+                            String dteActiveTo = singleObject.getString("dteActiveTo");
+                            JSONObject ob = singleObject.getJSONObject("dtmCreate");
+                            String date = ob.getString("date");
+                            SurveyModel model = new SurveyModel(intAuto, strMessage, dteActiveFrom, dteActiveTo, date);
+                            Toast.makeText(LogVisit.this, "" + intAuto, Toast.LENGTH_SHORT).show();
+                            surveyModels.add(model);
+                        }
+
+                        showQuestion(surveyModels);
+                    } else {
+                        questionOneId = "1";
+                        questionTwoId = "2";
+                        questionThreeId = "3";
                     }
 
-                    showQuestion(surveyModels);
                 } catch (Exception e) {
-                    Toast.makeText(LogVisit.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogVisit.this, "APIs not working: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -138,7 +146,7 @@ public class LogVisit extends AppCompatActivity {
         firstQuestion.setText(surveyModels.get(0).getStrMessage());
         questionOneId = surveyModels.get(0).getIntAuto();
         secondQuestion.setText(surveyModels.get(1).getStrMessage());
-        questionTwoId = surveyModels.get(0).getIntAuto();
+        questionTwoId = surveyModels.get(1).getIntAuto();
         thirdQuestion.setText(surveyModels.get(2).getStrMessage());
         questionThreeId = surveyModels.get(2).getIntAuto();
     }
@@ -267,7 +275,7 @@ public class LogVisit extends AppCompatActivity {
             public void onClick(View v) {
                 fifthOption.setChecked(true);
                 sixthOption.setChecked(false);
-                questionTwoAnswer = "Yes";
+                questionThreeAnswer = "Yes";
             }
         });
 
@@ -276,7 +284,7 @@ public class LogVisit extends AppCompatActivity {
             public void onClick(View v) {
                 fifthOption.setChecked(false);
                 sixthOption.setChecked(true);
-                questionTwoAnswer = "No";
+                questionThreeAnswer = "No";
             }
         });
 
@@ -334,7 +342,8 @@ public class LogVisit extends AppCompatActivity {
                 getCurrentLocation(new CurrentLocation() {
                     @Override
                     public void getLocation(double latitude, double longitude) {
-                        Call<String> call = apiService.submitLogVisit(code, "" + notes.getText().toString().trim(),
+                        Call<String> call = apiService.submitLogVisit(
+                                "" + code, "" + notes.getText().toString().trim(),
                                 "" + catchUpNotes.getText().toString(), "" + date,
                                 1, latitude, longitude,
                                 "" + questionOneId, "" + questionOneAnswer,
